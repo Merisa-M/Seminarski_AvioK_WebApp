@@ -1,0 +1,63 @@
+﻿@model ZaposlenikPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+}
+
+<br />
+<h2 style="text-align: center; font-style:italic;">Zaposelnici</h2>
+<br />
+<br />
+<table id="table_id" style="width:100%">
+    <thead>
+
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Datum rodjenja</th>
+            <th>Email</th>
+            <th>Broj ugovora</th>
+            <th>Slika</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var x in Model.zaposlenici)
+        {
+            <tr>
+                <td>@x.Ime</td>
+                <td>@x.Prezime</td>
+                <td>@x.DatumRodjenja</td>
+                <td>@x.Email</td>
+                <td>@x.BrojUgovora</td>
+                <td>@x.adresaaSlike</td>
+                <td>
+                    <span id="@x.Id">
+                        <a class="btn btn-outline-danger"
+                           asp-action="Obrisi" asp-route-id="@x.Id"> <i class="far fa-trash-alt"></i> Obriši</a>
+                    </span>
+
+
+                    <a class="btn btn-outline-primary" asp-action="Uredi" asp-route-id="@x.Id"><i class="fas fa-edit"></i>  Uredi</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+<br />
+<br />
+<a class="btn btn-outline-primary" asp-action="Dodaj"> Dodaj novog zaposlenika</a>
+<br />
+<br />
+<a class="btn btn-outline-danger" href="/Home/Index">Nazad</a>
+<head>
+    <script src="~/js/delete.js"></script>
+    <script src="~/js/dataTable.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/dataTable.css" rel="stylesheet" />
+</head>

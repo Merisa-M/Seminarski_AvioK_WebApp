@@ -1,0 +1,62 @@
+﻿@model GradPrikaziVM
+
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "_Layout";
+}
+<br />
+
+<h1 style="text-align:center; font-family:sans-serif">Prikaz gradova</h1>
+<br />
+<br />
+<table id="table_id" class="row-border " style="width:100%; text-align:center;">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th></th>
+
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+        @foreach (var x in Model.gradovi)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>
+                    <span id="@x.id">
+                        <a class="btn btn-outline-danger"
+                           asp-action="Obrisi" asp-route-id="@x.id"> <i class="far fa-trash-alt"></i> Obriši</a>
+                    </span>
+                    <a class="btn btn-outline-primary" asp-action="Uredi" asp-route-id="@x.id"><i class="fas fa-edit"></i>  Uredi</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<br />
+<br />
+<a style="text-align:center;" class="btn btn-outline-info" href="/Home/Index"><i class="fas fa-home"></i>  Početna</a>
+<a class="btn btn-outline-primary" asp-action="Dodaj"><i class="fas fa-plus-circle"></i>  Dodaj novi grad</a>
+
+
+<script type="text/javascript">
+    function uvecaj(xyz) {
+        xyz.style.width = "320px";
+        xyz.style.height = "190px";
+        xyz.style.border = "3px solid #003bff"
+        xyz.style.borderRadius = "10px"
+        xyz.style.transition = "2s"
+    }
+    function smanji(xyz) {
+        xyz.style.width = "100px";
+        xyz.style.height = "100px";
+        xyz.style.border = "0px solid #003bff"
+        xyz.style.borderRadius = "0px"
+        xyz.style.transition = "0.5s"
+    }</script>

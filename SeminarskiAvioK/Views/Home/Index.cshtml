@@ -1,0 +1,40 @@
+﻿@using SeminarskiAvioK.Helper
+@using SeminarskiAvio_K.Models
+
+
+@{
+    ViewData["Title"] = "Početna";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    KorisnickiNalog logiraniAdmin = Context.GetLogiraniKorisnik();
+}
+
+
+<body>
+    <section>
+        <div>
+
+            <h1 style="text-align:center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top:90px; color:darkslateblue;">
+                DOBRODOŠLI
+            </h1>
+
+            <h1 style="color:black; text-align:center">@logiraniAdmin.KorisnickoIme !</h1>
+            <br />
+            <br />
+            <br />
+
+
+            <p style="color:#fff;border-bottom:2px solid darkslateblue; width:50%; margin:auto;"></p>
+
+
+
+
+
+        </div>
+
+    </section>
+
+</body>
+

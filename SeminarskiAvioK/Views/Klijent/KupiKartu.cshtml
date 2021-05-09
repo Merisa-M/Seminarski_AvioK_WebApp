@@ -1,0 +1,93 @@
+﻿@model KarteDodajVM
+@{
+    ViewData["Title"] = "KupiKartu";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+
+}
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 100%; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .slika {
+        width: 80%;
+        height: 100%;
+        border-radius: 2px;
+    }
+</style>
+
+
+<br />
+
+<br />
+<body style=" background-color: whitesmoke">
+
+    <div class="row">
+        <div class="column">
+            <br /><br />
+            <br /><br /><br />
+            <span style="font-size:large; font-style:oblique;font-weight:bold;margin-left:10%">
+                Kupac:   @Model.Kupac
+            </span>
+            <br />
+            <br />
+            <span style="font-size:large; font-style:oblique;font-weight:bold;margin-left:10%">
+                Let:   @Model.let
+            </span>
+            <br />
+            <br />
+            <span style="font-size: large; font-style: oblique;font-weight:bold;margin-left:10%">
+                Cijena:   @Model.Cijena KM
+            </span>
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <form asp-action="SnimiUlaznicu" method="post">
+                <input type="hidden" asp-for="Karta.KartaID" />
+                <input type="hidden" asp-for="Karta.RezervacijaID" />
+                <input type="hidden" asp-for="Karta.LetID" />
+
+                <div class="form-group">
+                    <label style=" font-style:oblique;font-weight:bold;margin-left:10%">Odaberite sjedište: </label>
+
+                    <select asp-for="Karta.SjedisteID" asp-items="Model.sjedista" class="form-control" style="width:50%;margin-left:10%"></select>
+
+                </div>
+                <br />
+
+                <input type="submit" value="Kupi" class="btn btn-outline-success" style="margin-left:10%;  width:50%;" />
+
+            </form>
+        </div>
+
+        <div class="column">
+            <img src="~/images/sjedistaa.jpg" class="slika" style="border-radius:20px" />
+
+        </div>
+
+
+    </div>
+</body>
+
+

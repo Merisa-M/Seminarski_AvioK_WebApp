@@ -1,0 +1,43 @@
+﻿@model RecenzijaDodajVM
+@{
+    ViewData["Title"] = "DodajRecenziju";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+
+}
+
+
+<body>
+
+    <br />
+    <br />
+
+
+    <div>
+        <span style="font-size:20px; font-style:italic;font-weight:bold;margin-left:4%">
+            Putovanje: "@Model.putovanje"
+        </span>
+        <br /><br /><br />
+
+        <form asp-action="SnimiRecenziju" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Recenzija.RecenzijaID" />
+            <input type="hidden" asp-for="Recenzija.PutovanjaID" />
+            <input type="hidden" asp-for="Recenzija.KupacID" />
+
+            <div class="form-group">
+                <label class="label">Recenzija</label>
+                <input asp-for="Recenzija.Sadrzaj" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Ovo je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+
+            </div>
+
+            <input type="submit" value="Snimi" class="btn btn-danger" id="snimi" />
+            <br /><br />
+            <div>
+                <a class="btn btn-outline-info" asp-action="Putovanja"> <i class="fas fa-arrow-circle-left"></i> Nazad</a>
+            </div>
+        </form>
+
+
+    </div>
+</body>
+

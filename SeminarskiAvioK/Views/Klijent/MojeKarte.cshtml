@@ -1,0 +1,64 @@
+﻿@model KartePrikaziVM
+@{
+    ViewData["Title"] = "MojeKarte";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+    string error_poruka = (string)TempData["error_poruka"];
+}
+
+<body>
+
+
+    <br />
+    <h2 style="text-align:center;letter-spacing:3px;font-size:30px;font-family:Verdana;">MOJE KARTE</h2>
+    <br />
+    <br />
+
+
+    @if (error_poruka != null)
+    {
+        <br />
+        <div class="alert alert-danger">
+            @error_poruka
+        </div>
+    }
+
+    <div>
+        <table class="table table-primary alert-light">
+            <thead>
+                <tr>
+                    <th>Let </th>
+                    <th>Cijena (KM) </th>
+                    <th>Sjedište </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.karte)
+                {
+                    <tr>
+                        <td>@x.let</td>
+                        @*<td>@x</td>*@
+                        <td>@x.Cijena</td>
+                        <td>@x.sjedista</td>
+                        <td>
+                            <a class="btn btn-warning" asp-action="KarteDetalji" asp-route-id="@x.karteiD"><i class="fas fa-file-pdf"></i>  PDF</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<script>
+$(window).on("load", function () {
+            $(".loader-wrapper").fadeOut(2000);
+        });</script>
+
+
+

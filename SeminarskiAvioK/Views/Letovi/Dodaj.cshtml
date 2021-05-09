@@ -1,0 +1,43 @@
+﻿@model LetDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<br />
+<h2 style="text-align: center; font-style:italic;">Dodaj let</h2>
+<br />
+<br />
+<div style="width:70%; margin:auto;">
+
+    <form asp-action="Snimi" method="post">
+
+        <div class="form-group">
+            <div class="form-group">
+                <label>Grad: </label>
+                <select asp-for="Let.GradID" asp-items="Model.gradovi" class="form-control"></select>
+                <span asp-validation-for="Let.GradID" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label>Klasa: </label>
+                <select asp-for="Let.KlasaID" asp-items="Model.klase" class="form-control" ></select>
+                <span asp-validation-for="Let.KlasaID" class="text-danger"></span>
+
+            </div>
+            <label class="label">Cijena:</label>
+            <input asp-for="Let.Cijena" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Kapacitet je obavezno polje')"
+                   oninput="setCustomValidity('')" style="width:25%" />
+
+            <div class="form-group">
+                <label class="label">Vrijeme polaska: </label>
+                <input asp-for="Let.VrijemePolaska" type="date" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Ovo je obavezno polje')"
+                       oninput="setCustomValidity('')"  />
+            </div>
+        </div>
+
+
+        <input type="submit" value="Snimi" class="btn btn-outline-danger float-left" id="snimi" />
+
+
+    </form>
+</div>

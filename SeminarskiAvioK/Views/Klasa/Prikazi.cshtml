@@ -1,0 +1,51 @@
+﻿@model KlasaPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Prikazi klasa</h2>
+<br />
+<br />
+
+<table id="table_id" class="row-border " style="width:100%; text-align:center;">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th></th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var x in Model.klase)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>
+
+                    <span id="confirmDeleteSpan_@x.ID" style="display:none">
+                        <span>Da li ste sigurni da želite obrisati? </span>
+                        <a asp-action="Obrisi" asp-route-id="@x.ID" class="btn btn-danger">DA</a>
+                        <a href="#" class="btn btn-primary"
+                           onclick="confirmDelete('@x.ID', false)">NE</a>
+                    </span>
+
+                    <span id="deleteSpan_@x.ID">
+                        <a href="#" class="btn btn-danger"
+                           onclick="confirmDelete('@x.ID', true)"><i class="far fa-trash-alt"></i> Obriši</a>
+                    </span>
+                    <a class="btn btn-primary" asp-action="Uredi" asp-route-id="@x.ID"><i class="fas fa-edit"></i>  Uredi</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<br />
+<br />
+<a style="text-align:center;" class="btn btn-outline-info" href="/Home/Index"><i class="fas fa-home"></i>  Početna</a>
+<a class="btn btn-outline-primary" asp-action="Dodaj"><i class="fas fa-plus-circle"></i>  Dodaj novu klasu</a>
+<head>
+    <script src="~/js/delete.js"></script>
+</head>

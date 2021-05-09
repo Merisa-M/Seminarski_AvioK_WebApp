@@ -1,0 +1,237 @@
+﻿@using SeminarskiAvio_K.Models
+@using SeminarskiAvioK.Helper
+
+
+@{
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+@{
+    KorisnickiNalog logiraniAdmin = Context.GetLogiraniKorisnik();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Dashboard</title>
+
+
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin-2.css" rel="stylesheet"/>
+
+    <link  rel="stylesheet" href="~/css/dropMenu.css"/>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand navbar-dark bg-gradient-dark static-top">
+
+            <a class="navbar-brand mr-1" href="/Home/Index">AVIO KARTE</a>
+            <!-- Navbar -->
+            @*<ul class="navbar-nav ml-auto ml-md-0" >*@
+            <ul class="d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2">
+
+
+
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle fa-fw"></i>
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle fa-fw"></i>
+                        <span style="color:#fff;border-bottom:1px solid #007bff">@logiraniAdmin.KorisnickoIme</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        @*<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>*@
+                        <a class="dropdown-item" asp-area="" asp-controller="Login" asp-action="Logout">
+                            @if (logiraniAdmin?.KorisnickoIme != null)
+                            {
+                                @*<i class="fas fa-power-off"></i>*@
+                                <label>Odjavi se</label>
+                            }
+                            else
+                            {
+                                <label>Login</label>
+                            }
+                        </a>
+
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+
+
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <ul class="sidebar navbar-nav" style="background-color:#313438" )>
+                @*<li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-fw fa-home" style="color:red"></i>
+
+                        </a>
+                    </li>*@
+
+                <li class="nav-item @(controllerName == "Grad" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Gradovi</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Grad/Prikazi">Prikaz gradova</a>
+                            <a href="/Grad/Dodaj">Dodaj grad</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Avion" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Avioni</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Avion/Prikazi">Prikaz aviona</a>
+                            <a href="/Avion/Dodaj">Dodaj avion</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Klasa" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Klasa</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Klasa/Prikazi">Prikaz klasa</a>
+                            <a href="/Klasa/Dodaj">Dodaj klasu</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Kupac" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Kupac</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Kupac/Prikazi">Prikaz kupaca</a>
+                            <a href="/Kupac/Dodaj">Dodaj kupca</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item @(controllerName == "Putovanja" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Putovanja</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Putovanja/Prikazi">Prikaz putovanja</a>
+                            <a href="/Putovanja/Dodaj">Dodaj putovanje</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "NagradnaIgra" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Nagradne igre</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/NagradnaIgra/Prikazi">Prikaz nagradnih igara</a>
+                            <a href="/NagradnaIgra/Dodaj">Dodaj nagradnu igru</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Zaposlenik" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Zaposlenik</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Zaposlenik/Prikazi">Prikaz zaposlenika</a>
+                            <a href="/Zaposlenik/Dodaj">Dodaj zaposlenika</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Letovi" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Letovi</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Letovi/Prikazi">Prikaz letova</a>
+                            <a href="/Letovi/Dodaj">Dodaj let</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Novosti" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Novosti</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Novosti/Prikazi">Prikaz novosti</a>
+                            <a href="/Novosti/Dodaj">Dodaj novost</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Recenzija" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <span>Recenzije</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Recenzija/Prikazi">Prikaz recenzija</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div id="content-wrapper">
+
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+        @*Custom scripts for all pages*@
+        <script src="~/js/sb-admin.js"></script>
+
+
+
+    </div>
+</body>
+</html>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="~/vendor/jquery/jquery.min.js"></script>
+
+<script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="~/js/sb-admin-min.js"></script>
+
+
+

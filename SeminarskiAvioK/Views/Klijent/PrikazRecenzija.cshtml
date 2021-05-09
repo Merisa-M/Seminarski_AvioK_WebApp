@@ -1,0 +1,60 @@
+﻿@model RecenzijePrikaziVM
+@{
+    ViewData["Title"] = "PrikazRecenzija";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+
+}
+
+<br />
+<br />
+
+<body style="background-color:whitesmoke;">
+    <span style="font-size: 26px; font-style:oblique; font-weight:bold; margin-left:5%; margin-left:10%">
+        Putovanje: @Model.putovanje
+    </span>
+    <br />
+    <br />
+    <br />
+    <table class="table" style="width:80%; margin-left:10%">
+        <thead>
+            <tr>
+                <th>Sadržaj </th>
+                <th>Kupac</th>
+                <th>Vrijeme kreiranja</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.recenzije)
+            {
+                @if (x.Odobren)
+                {
+                    <tr>
+                        <td>@x.sadrzaj</td>
+                        <td>@x.kupac</td>
+                        <td>@x.VrijemeKreiranja</td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</body>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="~/js/delete.js"></script>
+
+</head>
+
+<br />
+<br />
+<br />
+<a class="btn btn-outline-info" style="margin-left:10%" asp-action="Putovanja"> <i class="fas fa-arrow-circle-left"></i> Nazad</a>
+<a class="btn btn-success" asp-action="DodajRecenziju" asp-route-id="@Model.putovanjeid" style="margin-left:2%"><i class="fas fa-plus-circle"></i>  Dodaj recenziju</a>
+
+<br />
+<br />
+
+

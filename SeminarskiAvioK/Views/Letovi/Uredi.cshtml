@@ -1,0 +1,40 @@
+﻿@model LetUrediVM
+@{
+    ViewData["Title"] = "Uredi";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Uredi</h2>
+
+<br />
+<br />
+<form asp-action="UrediSnimi" method="post">
+    <input type="hidden" asp-for="id" />
+
+    <div class="form-group">
+        <label>Grad:</label>
+        <select class="form-control" asp-for="gradid" asp-items="Model.gradovi" style="width:250px"></select>
+
+    </div>
+    <div class="form-group">
+        <label>Klase:</label>
+        <select class="form-control" asp-for="klasaid" asp-items="Model.klase" style="width:250px"></select>
+    </div>
+    <div class="form-group">
+        <label>Cijena </label>
+        <input class="form-control" asp-for="Cijena" style="width:250px" />
+    </div>
+    <div class="form-group">
+        <label class="label">Vrijeme polaska</label>
+        <input class="form-control" type="text" asp-for="VrijemePolaska" id="input" />
+
+    </div>
+
+
+    <input type="submit" value="Sačuvaj" class="btn btn-outline-danger" id="snimi" />
+</form>
+
+<br />
+<br />
+<a href="/Let/Prikazi" class="btn btn-warning"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
+
+

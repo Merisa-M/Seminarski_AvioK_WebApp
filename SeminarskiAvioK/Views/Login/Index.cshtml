@@ -1,0 +1,84 @@
+﻿@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+    string error_poruka = (string)TempData["error_poruka"];
+    Layout = "_LayoutAnonim";
+}
+
+<head>
+
+    <link href="~/css/LoginForm.css" rel="stylesheet" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://code.jquery.com/jquery-2.1.4.js"
+            integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="
+            crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/css/loader.css" rel="stylesheet" />
+
+</head>
+
+
+<div class="content">
+
+
+    @using (Html.BeginForm("Provjera", "Login"))
+    {
+
+        <div class="login-box">
+            <h1>Prijava</h1>
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" name="username" placeholder="Korisničko ime" required="" oninvalid="this.setCustomValidity('Obavezno polje')"
+                       oninput="setCustomValidity('')" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Lozinka" required="" oninvalid="this.setCustomValidity('Obavezno polje')"
+                       oninput="setCustomValidity('')" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+            <label for="checkbox">Zapamti password</label>
+            <input asp-for="ZapamtiPassword" type="checkbox" id="chkRememberMe" name="checkbox">
+
+            <br /><br />
+            <input type="submit" class="btn" value="Prijavi se">
+            <br /><br />
+
+            @if (error_poruka != null)
+            {
+                <br />
+                <div class="alert alert-danger">
+                    @error_poruka
+                </div>
+            }
+
+            <div class="textbox">
+                <span>
+                    <a class="btn" asp-controller="Registracija" asp-action="Index">Registruj se</a>
+                </span>
+            </div>
+            <br />
+        </div>
+    }
+    <div>
+
+    </div>
+
+</div>
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<script>
+$(window).on("load", function () {
+            $(".loader-wrapper").fadeOut(2000);
+        });</script>
+
+
+
+
+

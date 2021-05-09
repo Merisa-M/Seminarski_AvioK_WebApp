@@ -1,0 +1,63 @@
+﻿@model RegistracijaIndexVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "_LayoutAnonim";
+}
+
+<head>
+    <link href="~/css/LoginForm.css" rel="stylesheet" />
+</head>
+
+<form asp-action="Snimi" method="post">
+    <input type="hidden" asp-for="Kupac.KorisnickiNalogID" />
+    <input type="hidden" asp-for="KorisnickiNalog.KorisnickiNalogID" />
+
+    <div class="login-box">
+        <h1>Registracija</h1>
+        <div class="textbox">
+            <input type="text" id="ime" asp-for="Kupac.Ime" placeholder="Ime" required="" oninvalid="this.setCustomValidity('Ime je obavezno')"
+                   oninput="setCustomValidity('')" />
+
+        </div>
+        <div class="textbox">
+            <input type="text" asp-for="Kupac.Prezime" id="prezime" placeholder="Prezime" required="" oninvalid="this.setCustomValidity('Prezime je obavezno')"
+                   oninput="setCustomValidity('')" />
+
+        </div>
+        <div class="textbox">
+            <input type="text" asp-for="Kupac.BrojTelefona" id="brtelefona" placeholder="Broj telefona" required="" oninvalid="this.setCustomValidity('setCustomValidity')"
+                   oninput="setCustomValidity('')" />
+
+        </div>
+        <div class="textbox">
+            <input type="text" asp-for="Kupac.Email" id="email" placeholder="Email" required="" oninvalid="this.setCustomValidity('setCustomValidity')"
+                   oninput="setCustomValidity('')" />
+
+        </div>
+        <div class="textbox">
+            <label>Broj tokena:</label>
+            <input type="text" asp-for="Kupac.BrojTokena" id="brtokena" placeholder="Broj tokena" value="50" required readonly />
+
+        </div>
+
+       
+
+        <div class="textbox">
+            <input type="text" id="username" asp-for="KorisnickiNalog.KorisnickoIme" placeholder="Korisničko ime" required="" oninvalid="this.setCustomValidity('Obavezno polje')"
+                   oninput="setCustomValidity('')" />
+        </div>
+
+        <div class="textbox">
+            <input asp-for="KorisnickiNalog.Lozinka" type="password" id="password" placeholder="Lozinka" required="" oninvalid="this.setCustomValidity('Obavezno polje')"
+                   oninput="setCustomValidity('')" />
+        </div>
+
+        <input type="submit" class="btn" value="Potvrdi registraciju" />
+        <div class="textbox">
+            <span>
+                <a asp-controller="Login" asp-action="Index" class="btn">Već imam račun</a>
+            </span>
+        </div>
+    </div>
+</form>
+

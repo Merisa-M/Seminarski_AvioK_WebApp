@@ -1,0 +1,29 @@
+﻿@model KlasaDodajVM
+
+@{ ViewData["Title"] = "Dodaj";
+}
+
+<br />
+<h2 style="text-align: center; font-style:italic;">Dodaj klasu</h2>
+<br />
+<br />
+<div style="width:70%; margin:auto;">
+
+    <form asp-action="Snimi" method="post">
+        <input type="hidden" asp-for="Klasa.KlasaID" />
+
+        <div class="form-group">
+            <label class="label">Naziv klase</label>
+            <input asp-for="Klasa.Naziv" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Naziv je obavezno polje')"
+                   oninput="setCustomValidity('')" />
+
+        </div>
+
+        <input type="submit" value="Snimi" class="btn btn-outline-danger float-right" id="snimi" />
+
+
+    </form>
+</div>
+
+
+

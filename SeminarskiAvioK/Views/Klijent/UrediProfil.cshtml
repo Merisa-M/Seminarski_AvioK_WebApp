@@ -1,0 +1,55 @@
+﻿
+@model KorisnickiProfilVM
+
+@{
+    ViewData["Title"] = "UrediProfil";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+}
+
+<body>
+    <br />
+    <h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana">Uredi profil</h2>
+    <br />
+    <div>
+        <form asp-action="SnimiProfil" method="post">
+            <input type="hidden" asp-for="KupacID" />
+
+            <div class="form-group">
+                <label class="label">Ime</label>
+                <input asp-for="Ime" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Obavezno polje!')"
+                       oninput="setCustomValidity('')" />
+
+            </div>
+
+            <div class="form-group">
+                <label class="label">Prezime</label>
+                <input asp-for="Prezime" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Obavezno polje!')"
+                       oninput="setCustomValidity('')" />
+
+            </div>
+
+            <div class="form-group">
+                <label class="label">Broj telefona</label>
+                <input asp-for="BrojTelefona" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Obavezno polje!')"
+                       oninput="setCustomValidity('')" />
+
+            </div>
+
+
+
+            <input type="submit" value="Sačuvaj" class="btn btn-outline-danger float-right" id="snimi" />
+        </form>
+
+        <br /><br />
+        <a asp-action="ONama" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
+    </div>
+</body>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    @*<link rel="stylesheet" href="~/css/forme.css">*@
+
+</head>
+
+
+
+

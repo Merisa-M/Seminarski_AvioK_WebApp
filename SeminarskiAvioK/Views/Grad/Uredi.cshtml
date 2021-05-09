@@ -1,0 +1,27 @@
+﻿@model SeminarskiAvio_K.Models.Grad
+@{
+    ViewData["Title"] = "Uredi";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Uredi</h2>
+<br />
+<br />
+
+<div>
+    <form asp-action="UrediSnimi" method="post">
+
+        <input type="hidden" asp-for="GradID" />
+
+        <div class="form-group">
+            <label class="label">Naziv grada</label>
+            <input type="text" asp-for="Naziv" id="input" class="form-control" />
+            <span asp-validation-for="Naziv" class="text-danger"></span>
+
+        </div>
+
+        <input type="submit" value="Sačuvaj" class="btn btn-outline-danger" id="snimi" />
+    </form>
+
+    <br /><br />
+    <a asp-action="Prikazi" class="btn btn-outline-warning"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
+</div>

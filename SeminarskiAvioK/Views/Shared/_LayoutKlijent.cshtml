@@ -1,0 +1,314 @@
+﻿@using SeminarskiAvioK.Helper
+@using SeminarskiAvio_K.Models
+
+@{
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@{
+    KorisnickiNalog logiraniAdmin = Context.GetLogiraniKorisnik();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    @*<link rel="stylesheet" type="text/css" href="~/vendor/fontawesome-free/css/all.min.css">*@
+    <link  rel="stylesheet" type="text/css" href="~/fontawesome.css"/>
+    <!-- Page level plugin CSS-->
+    <link href="~/vendor/datatables/dataTable.css" rel="stylesheet">
+   
+    <!-- Custom styles for this template-->
+  
+    <link href="~/css/sb-admin-2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link href="/Content/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link href="~/css/footer.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/dropMenu.css">
+
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand navbar-dark bg-gradient-dark static-top">
+
+            <a class="navbar-brand mr-1" href="/Klijent/Index">AVIO KARTE</a>
+            <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!--Navbar Search-->
+            @* <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">*@
+            @*<div class="input-group">
+                    <input type="text" class="form-control" placeholder="Pretraga" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>*@
+            @*</form>*@
+
+            <!-- Navbar -->
+
+            <ul class="navbar-nav mx-auto">
+                <div class=" d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </ul>
+
+
+        
+            <li class="nav-item dropdown no-arrow show">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle fa-fw"></i>
+                    <span style="color:white;border-bottom:1px solid white">@logiraniAdmin.KorisnickoIme</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"></a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Login" asp-action="Logout">
+                        @if (logiraniAdmin?.KorisnickoIme != null)
+                        {
+                            <i class="fas fa-power-off"></i>
+                            <label>Odjavi se</label>
+                        }
+                        else
+                        {
+                            <label>Login</label>
+                        }
+                    </a>
+                </div>
+            </li>
+
+
+
+        </nav>
+
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <ul class="sidebar navbar-nav" style="background-color:#313438">
+
+                <li class="nav-item dropdown d-lg-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Pages</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <h6 class="dropdown-header">Login Screens:</h6>
+                        <a class="dropdown-item" href="login.html">Login</a>
+                        <a class="dropdown-item" href="register.html">Register</a>
+                        <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Other Pages:</h6>
+                        <a class="dropdown-item" href="404.html">404 Page</a>
+                        <a class="dropdown-item" href="blank.html">Blank Page</a>
+                    </div>
+                </li>
+                <li class="nav-item d-lg-none">
+                    <a class="nav-link" href="charts.html">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Charts</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @(controllerName == "Klijent" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-fw fa-info"></i>
+                            <a asp-controller="Klijent" asp-action="ONama">O nama</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item @(controllerName == "Novosti" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-file-word fa-newspaper"></i>
+                            <a asp-controller="Klijent" asp-action="Novosti">Novosti</a>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li class="nav-item @(controllerName == "NagradnaIgra" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-file-word fa-gift"></i>
+                            <a asp-controller="Klijent" asp-action="NagradneIgre">Nagradne igre</a>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li class="nav-item @(controllerName == "Putovanja" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-fw fa-table"></i>
+                            <a asp-controller="Klijent" asp-action="Putovanja">Putovanja</a>
+
+                        </div>
+
+                    </div>
+                </li>
+
+                <li class="nav-item @(controllerName == "Putovanje" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-fw fa-table"></i>
+                            <a asp-controller="Klijent" asp-action="MojeRezervacije">Moje rezervacije</a>
+
+                        </div>
+
+                    </div>
+                </li>
+                <li class="nav-item @(controllerName == "Klijent" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-ticket-alt"></i>
+                            <a asp-controller="Klijent" asp-action="MojeKarte">Moje karte</a>
+
+                        </div>
+
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item @(controllerName == "Klijent" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Korisnički profil</span>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="/Klijent/UrediProfil">Korisnički profil</a>
+                            <a href="/Klijent/PromijeniLozinku">Promijeni lozinku</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item @(controllerName == "Predstava" ? "active" : "")">
+                    <div class="dropdown">
+                        <div class="dropbtn">
+                            <i class="fas fa-images"></i>
+                            <a asp-controller="Klijent" asp-action="Galerija">Galerija</a>
+
+                        </div>
+
+                    </div>
+                </li>
+
+
+            </ul>
+
+            <div id="content-wrapper">
+
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+
+                <br /><br />
+
+                <footer class="sticky-footer" style="border-top:lightgrey solid 1px;">
+                    <div class="container my-auto">
+
+                        <div class="copyright text-center my-auto">
+                            <h5>
+
+                                Sarajevo, Bosna i Hercegovina
+
+                            </h5>
+                        </div>
+
+                    </div>
+
+
+                </footer>
+
+
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+        <!-- Scroll to Top Button-->
+        @*<a class="scroll-to-top rounded" href="#page-top" style="background-color:#007bff;" id="toTop">
+                <i class="fas fa-angle-up"></i>
+            </a>*@
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript-->
+       <script src="~/vendor/jquery/jquery.min.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+
+        <script src="~/vendor/chart.js/chart.min.js"></script>
+        <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin-min.js"></script>
+        <!-- Demo scripts for this page-->
+        <script src="~/js/demo/datatables-demo.js"></script>
+    </div>
+</body>
+</html>
+
+
+<script>
+    $('#toTop').click(function () {
+        $('html, body').animate({ scrollTop: 0 }, 800);
+        return false;
+    });
+</script>
+
+

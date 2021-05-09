@@ -1,0 +1,82 @@
+﻿@model NovostiPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+}
+<br />
+
+<h1 style="text-align: center; font-style:italic;">Prikaz novosti</h1>
+<br />
+<br />
+
+<table id="table_id" class="row-border " style="width:100%; text-align:center;">
+    <thead>
+        <tr>
+            <th>Naziv </th>
+            <th>Tekst </th>
+            <th>Sadržaj </th>
+            <th>Vrijeme objave </th>
+            <th></th>
+        </tr>
+
+
+
+    </thead>
+    <tbody>
+        @foreach (var x in Model.novosti)
+        {
+            var photopath = "~/images/" + (x.AdresaSlike ?? "no-image.png");
+
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.Tekst</td>
+                <td>@x.Sadrzaj</td>
+                <td>@x.DatumObjave</td>
+                <td style="width: 8%">
+                    <img class="card-img-top imageThumbnail" src="@photopath"
+                         asp-append-version="true" style="height:100px;width:100px;cursor:pointer;" onmouseout="smanji(this)" onmouseover="uvecaj(this)" />
+                </td>
+                <td style="width:18%">
+
+
+                    <span id="deleteSpan_@x.id">
+                        <a href="#" class="btn btn-danger"
+                           onclick="confirmDelete('@x.id', true)"><i class="far fa-trash-alt"></i> Obriši</a>
+                    </span>
+
+                    <a class="btn btn-primary" asp-action="Uredi" asp-route-id="@x.id"><i class="fas fa-edit"></i>  Uredi</a>
+            </tr>
+
+
+        }
+    </tbody>
+
+
+
+</table>
+
+<br />
+<br />
+<a style="text-align:center;" class="btn btn-outline-info" href="/Home/Index"><i class="fas fa-home"></i>  Nazad</a>
+<a class="btn btn-outline-primary" asp-action="Dodaj"><i class="fas fa-plus-circle"></i>  Dodaj novu novost</a>
+
+<head>
+    <script src="~/js/delete.js"></script>
+</head>
+
+<script type="text/javascript">
+
+    function uvecaj(xyz) {
+        xyz.style.width = "320px";
+        xyz.style.height = "190px";
+        xyz.style.border = "3px solid #003bff"
+        xyz.style.borderRadius = "10px"
+        xyz.style.transition = "2s"
+    }
+    function smanji(xyz) {
+        xyz.style.width = "100px";
+        xyz.style.height = "100px";
+        xyz.style.border = "0px solid #003bff"
+        xyz.style.borderRadius = "0px"
+        xyz.style.transition = "0.5s"
+    }
+</script>

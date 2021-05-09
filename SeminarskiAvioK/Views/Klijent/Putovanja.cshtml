@@ -1,0 +1,61 @@
+﻿
+@model PutovanjaPrikaziVM
+@{
+    ViewData["title"] = "Putovanja";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+
+}
+<br />
+<h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana">PUTOVANJA</h2>
+<br />
+<br />
+
+<body>
+    <div class="content">
+
+
+        <table class="table table-primary alert-light">
+            <thead>
+                <tr>
+                    <th>Naziv </th>
+                    <th>Opis </th>
+                    <th>Grad </th>
+                    <th>Ocjena </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.putovanja)
+                {
+                    <tr>
+                        <td>@x.Naziv</td>
+                        <td>@x.Opis</td>
+                        <td>@x.NazivGrada</td>
+                        @*<td style="text-align:center"> @Math.Round(x.prosjecnaOcjena, 2)</td>*@
+                        <td>
+                            <a class="btn btn-info" asp-action="Opsirnije" asp-route-id="@x.id"><i class="fas fa-info-circle"></i> Opširnije</a>
+
+                            <a class="btn btn-outline-warning" asp-action="OcijeniPutovanje" asp-route-id="@x.id"><i class="fas fa-star-half-alt"></i> Ocijeni putovanje</a>
+
+                            <a class="btn btn-outline-warning" asp-action="PrikazRecenzija" asp-route-id="@x.id"> <i class="fas fa-comments"></i> Prikaz recenzija</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+</body>
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<script>
+$(window).on("load", function () {
+            $(".loader-wrapper").fadeOut(2000);
+        });</script>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+

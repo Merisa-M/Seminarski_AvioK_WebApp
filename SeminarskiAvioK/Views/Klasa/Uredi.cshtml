@@ -1,0 +1,32 @@
+﻿@model KlasaUrediVM
+
+@{
+    ViewData["Title"] = "Uredi";
+}
+<br />
+<br />
+
+<h2 style="text-align: center; font-style:italic;">Uredi</h2>
+
+<br />
+<br />
+
+<div>
+
+    <form asp-action="UrediSnimi" method="post">
+
+        <input type="hidden" asp-for="KlasaID" />
+
+        <div class="form-group">
+            <label class="label">Naziv klase:</label>
+            <input type="text" asp-for="Naziv" id="input" class="form-control" />
+        </div>
+
+
+        <input type="submit" value="Sačuvaj" class="btn btn-outline-danger" id="snimi" />
+    </form>
+    <br /><br />
+    <a asp-action="Prikazi" class="btn btn-outline-warning"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
+</div>
+
+

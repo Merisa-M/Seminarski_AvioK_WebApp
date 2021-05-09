@@ -1,0 +1,43 @@
+﻿@model NagradnaIgraPrikazVM
+
+@{
+    ViewData["Title"] = "NagradnaIgra";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+}
+<br />
+<h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana">NAGRADNE IGRE</h2>
+<br />
+<br />
+
+<body>
+
+    <table class="table table-primary alert-light">
+        <thead>
+            <tr>
+                <th>Naziv </th>
+                <th>Početak</th>
+                <th>Kraj</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.nagrade)
+            {
+                <tr>
+                    <td style="font-weight:bold" width="15%">@x.Naziv</td>
+                    <td style="font-weight:bold" width="20%">@x.Pocetak</td>
+                    <td style="font-weight:bold" width="20%">@x.Kraj</td>
+
+                    <td>
+                        <a class="btn btn-info" asp-action="NagradneIgreOpsirnije" asp-route-id="@x.id">Opširnije</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+</body>
+
+

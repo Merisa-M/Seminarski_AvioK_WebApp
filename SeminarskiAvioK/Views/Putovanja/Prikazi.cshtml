@@ -1,0 +1,61 @@
+﻿@model PutovanjaPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+}
+
+<br />
+<h2 style="text-align: center; font-style:italic;">Prikaz putovanja</h2>
+<br />
+<br />
+<table id="table_id" style="width:100%">
+    <thead>
+
+        <tr>
+            <th>Naziv</th>
+            <th>Grad</th>
+            <th>Opis</th>
+            <th>Ocjena</th>
+
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var x in Model.putovanja)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.NazivGrada</td>
+                <td>@x.Opis</td>
+                <td>@x.prosjecnaOcjena</td>
+
+                <td>
+                    <span id="@x.id">
+                        <a class="btn btn-outline-danger"
+                           asp-action="Obrisi" asp-route-id="@x.id"> <i class="far fa-trash-alt"></i> Obriši</a>
+                    </span>
+
+
+                    <a class="btn btn-outline-primary" asp-action="Uredi" asp-route-id="@x.id"><i class="fas fa-edit"></i>  Uredi</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+<br />
+<br />
+<a class="btn btn-outline-primary" asp-action="Dodaj"> Dodaj novo putovanje</a>
+<br />
+<br />
+<a class="btn btn-outline-danger" href="/Home/Index">Nazad</a>
+<head>
+    <script src="~/js/delete.js"></script>
+    <script src="~/js/dataTable.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/dataTable.css" rel="stylesheet" />
+</head>

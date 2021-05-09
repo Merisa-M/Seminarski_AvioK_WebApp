@@ -1,0 +1,50 @@
+﻿@model NovostiPrikaziVM
+@{
+    ViewData["Title"] = "Novosti";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+
+}
+<br />
+<h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana">NOVOSTI</h2>
+<br />
+<br />
+
+<body style="background-color:whitesmoke;">
+
+    <div style="width:100%;">
+        @foreach (var x in Model.novosti)
+        {
+            var photoPath = "~/images/" + (x.AdresaSlike ?? "no-image.png");
+
+            <div style="font-size:34px;font-style:italic;  font-weight: bold; margin-left:12%;margin-bottom:1%;margin-top:2%">
+                @x.Naziv
+            </div>
+            <div style="font-size:18px; margin-left:9%;margin-bottom:1%;font-family: 'Farsan';font-size: 16px;">
+                Datum / Vrijeme objave: @x.DatumObjave
+            </div>
+
+            <div>
+                <img class="card-img-top imageThumbnail" src="@photoPath"
+                     asp-append-version="true" style="height:50%;width:55%;cursor:pointer; margin-left:8%" />
+
+            </div>
+
+            <div style="font-size:18px; margin-left:8%;margin-bottom:1%;margin-top:1%;width:55%">
+                @x.Sadrzaj
+            </div>
+
+            <div>
+                <a class="btn btn-outline-info" asp-action="NovostiOpsirnije" asp-route-id="@x.id"
+                   style=" margin-left:54%;width:10%"> Opširnije</a>
+            </div>
+
+
+        }
+    </div>
+</body>
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+

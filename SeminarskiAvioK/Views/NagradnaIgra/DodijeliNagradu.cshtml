@@ -1,0 +1,49 @@
+﻿@model KupacNagradnaIgraDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+@{
+    ViewData["Title"] = "DodijeliNagradu";
+}
+
+
+<body>
+    <br />
+    <h2 style="text-align: center; font-style:italic;">Dodijeli nagradu</h2>
+    <br />
+    <div   style="width:70%; margin:auto;">
+      
+
+        <form asp-action="NagradnaIgraSnimi" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="KupacNagradnaIgra.KupacNagradnaIgraID" />
+            <input type="hidden" asp-for="KupacNagradnaIgra.KupacID" />
+            <input type="hidden" asp-for="KupacNagradnaIgra.NagradnaIgraID" />
+            <input type="hidden" asp-for="kupacId" />
+            <input type="hidden" asp-for="nagradnaIgraId" />
+
+            <div class="form-group">
+                <label class="label">Kupac</label>
+                <select class="form-control" asp-for="kupacId" asp-items="Model.Kupac" id="input" disabled></select>
+            </div>
+
+            <div class="form-group">
+                <label class="label">Nagradna igra</label>
+                <select class="form-control" asp-for="nagradnaIgraId" asp-items="Model.NagradnaIgra" id="input" disabled></select>
+            </div>
+
+
+            <input type="submit" value="Snimi" class="btn btn-danger" id="snimi" />
+        </form>
+    </div>
+</body>
+<script>
+$(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });</script>
+
+
+

@@ -1,0 +1,40 @@
+﻿@model LoginVM
+
+@{
+    ViewData["Title"] = "Uredi";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+}
+
+<body>
+    <br />
+    <h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana"> Promijeni lozinku i/ili korisničko ime</h2>
+    <br />
+    <div>
+        <form asp-action="PromijeniLozinkuSnimi" method="post">
+            <div class="form-group">
+                <label class="label">Username</label>
+                <input asp-for="Username" id="input" class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+                <label class="label">Password</label>
+                <input asp-for="Password" id="input" class="form-control" required oninvalid="this.setCustomValidity('Obavezno polje')"
+                       oninput="setCustomValidity('')" />
+
+            </div>
+
+
+
+            <input type="submit" value="Sačuvaj" class="btn btn-outline-danger float-right" id="snimi" />
+        </form>
+
+
+        <br /><br />
+        <a asp-action="ONama" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i>  Nazad</a>
+
+    </div>
+</body>
+
+
+

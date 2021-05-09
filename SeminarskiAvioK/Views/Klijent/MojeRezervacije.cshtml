@@ -1,0 +1,81 @@
+﻿@using SeminarskiAvio_K.Models
+@model RezervacijaPrikaziVM
+@using SeminarskiAvioK.Helper
+@{
+    ViewData["Title"] = "MojeRezervacije";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+    string error_poruka2 = (string)TempData["error_poruka2"];
+
+}
+<br />
+<h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana">MOJE REZERVACIJE</h2>
+
+@{
+    KorisnickiNalog logiraniAdmin = Context.GetLogiraniKorisnik();
+}
+
+
+<body>
+
+    <br />
+    <input type="hidden" asp-for="@Model.kupacid" />
+    <br />
+
+
+
+
+    @if (error_poruka2 != null)
+    {
+        <br />
+        <div class="alert alert-danger">
+            @error_poruka2
+        </div>
+    }
+
+    <div class="content">
+
+        <table class="table table-primary alert-light">
+            <thead>
+                <tr>
+                    <th>Datum rezervacije </th>
+                    <th>Datum isteka</th>
+                    <th>Odobrena</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.rezervacije)
+                {
+                    <tr>
+                        <td>@x.DatumRezervacije</td>
+                        <td>@x.DatumIsteka</td>
+                        @if (x.Odobren)
+                        {
+                            <td style="color:forestgreen">DA</td>
+                            <td>
+                                <a class="btn btn-outline-success" style="width:50%" asp-action="KupiKartu" asp-route-id="@x.id"><i class="fas fa-shopping-cart"></i> Kupi kartu</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="color:red">NE</td>
+                            <td>
+                                <a class="btn btn-outline-danger" style="width:50%" asp-action="OtkaziRezervaciju" asp-route-id="@x.id"><i class="fas fa-window-close"></i> Otkaži rezervaciju</a>
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<script>
+    $(window).on("load", function () {
+        $(".loader-wrapper").fadeOut(2000);
+    });</script>
+
+

@@ -1,0 +1,63 @@
+﻿@using SeminarskiAvio_K.Models
+@model IEnumerable<KupacPrikaziVM.row>
+
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "_Layout";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Kupci</h2>
+<br />
+<br />
+<table id="table_id" class="row-border " style="width:100%; text-align:center;">
+    <thead>
+
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            @*<th>Grad</th>*@
+            <th>Broj telefona</th>
+            <th>Email</th>
+            <th>Broj tokena</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Ime</td>
+                <td>@x.Prezime</td>
+                @*<td>@x.NazivGrada</td>*@
+                <td>@x.BrojTelefona</td>
+                <td>@x.Email</td>
+                <td>@x.BrojTokena</td>
+                <td>
+                    <span id="@x.KupacID">
+                        <a class="btn btn-outline-danger"
+                           asp-action="Obrisi" asp-route-id="@x.KupacID"> <i class="far fa-trash-alt"></i> Obriši</a>
+                    </span>
+
+
+                    <a class="btn btn-outline-primary" asp-action="Uredi" asp-route-id="@x.KupacID"><i class="fas fa-edit"></i>  Uredi</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+<br />
+<br />
+<a style="text-align:center;" class="btn btn-outline-info" href="/Home/Index"><i class="fas fa-home"></i>  Početna</a>
+<a class="btn btn-outline-success" asp-action="Dodaj"><i class="fas fa-plus-circle"></i>  Dodaj novovg kupca</a>
+<head>
+    <script src="~/js/delete.js"></script>
+    <script src="~/js/dataTable.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/dataTable.css" rel="stylesheet" />
+</head>

@@ -1,0 +1,83 @@
+﻿@model RecenzijePrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "_Layout";
+}
+<br />
+
+<h2 style="text-align: center; font-style:italic;">Recenzije</h2>
+<br />
+<br />
+
+<table id="table_id" style="width:100%">
+    <thead>
+        <tr>
+            <th>Sadržaj</th>
+            <th>Putovanje</th>
+            <th>Kupac</th>
+            <th>Vrijeme kreiranja</th>
+            <th>Odobren</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var x in Model.recenzije)
+        {
+
+            <tr>
+                <td>@x.sadrzaj</td>
+                <td>@x.putovanja</td>
+                <td>@x.kupac</td>
+                <td>@x.VrijemeKreiranja</td>
+
+                @if (x.Odobren)
+                {
+                    <td>DA</td>
+                    <td>
+                        <span id="confirmDeleteSpan_@x.id" style="display: none">
+                            <span>Da li ste sigurni da želite obrisati? </span>
+                            <a asp-action="Obrisi" asp-route-id="@x.id" class="btn btn-danger">DA</a>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@x.id', false)">NE</a>
+                        </span>
+
+                        <span id="deleteSpan_@x.id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@x.id', true)"> <i class="far fa-trash-alt"></i> Obriši</a>
+                        </span>
+                    </td>
+                }
+                else
+                {
+                    <td>NE</td>
+                    <td>
+                        <span id="confirmDeleteSpan_@x.id" style="display:none">
+                            <span>Da li ste sigurni da želite obrisati? </span>
+                            <a asp-action="Obrisi" asp-route-id="@x.id" class="btn btn-danger">DA</a>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@x.id', false)">NE</a>
+                        </span>
+
+                        <span id="deleteSpan_@x.id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@x.id', true)"> <i class="far fa-trash-alt"></i> Obriši</a>
+                        </span>
+                        <a class="btn btn-success" asp-action="Odobri" asp-route-id="@x.id"><i class="fas fa-check-circle"></i>  Odobri</a>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+<head>
+    <script src="~/js/delete.js"></script>
+</head>
+<br />
+<br />
+<a style="text-align:center;" class="btn btn-outline-info" href="/Home/Index"><i class="fas fa-home"></i>  Početna</a>
+
+

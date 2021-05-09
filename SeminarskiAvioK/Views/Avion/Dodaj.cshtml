@@ -1,0 +1,33 @@
+﻿@model AvionDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Dodaj avion</h2>
+<br />
+<br />
+<div style="width:70%; margin:auto;">
+
+    <form asp-action="Snimi" method="post">
+
+        <div class="form-group">
+            <label class="label">Naziv aviona</label>
+            <input asp-for="Avion.Naziv" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Naziv je obavezno polje')"
+                   oninput="setCustomValidity('')" />
+            <div class="form-group">
+                <label>Klasa </label>
+                <select asp-for="Avion.KlasaID" asp-items="Model.klase" class="form-control" style="width:25%"></select>
+                <span asp-validation-for="Avion.KlasaID" class="text-danger"></span>
+
+            </div>
+            <label class="label">Kapacitet</label>
+            <input asp-for="Avion.Kapacitet" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Kapacitet je obavezno polje')"
+                   oninput="setCustomValidity('')" />
+        </div>
+
+
+        <input type="submit" value="Snimi" class="btn btn-outline-danger float-right" id="snimi" />
+
+
+    </form>
+</div>

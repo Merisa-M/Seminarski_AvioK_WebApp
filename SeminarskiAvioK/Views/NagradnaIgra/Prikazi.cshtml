@@ -1,0 +1,74 @@
+﻿
+@model NagradnaIgraPrikazVM
+@{
+    ViewData["title"] = "Prikazi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Nagradne igre</h2>
+<br />
+<br />
+
+
+<table id="table_id" class="row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th>Naziv </th>
+            <th>Opis </th>
+            <th>Početak</th>
+            <th>Kraj</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.nagrade)
+        {
+
+            <tr>
+                <td style="width:7%">@x.Naziv</td>
+                <td style="width:43%">@x.Opis</td>
+                <td style="width:10%">@x.Pocetak</td>
+                <td style="width:10%">@x.Kraj</td>
+
+                <td style="width:30%">
+                    <span id="confirmDeleteSpan_@x.id" style="display:none">
+                        <span>Da li ste sigurni da želite obrisati? </span>
+                        <a asp-action="Obrisi" asp-route-id="@x.id" class="btn btn-danger">DA</a>
+                        <a href="#" class="btn btn-primary"
+                           onclick="confirmDelete('@x.id', false)">NE</a>
+                    </span>
+
+                    <span id="deleteSpan_@x.id">
+                        <a href="#" class="btn btn-danger"
+                           onclick="confirmDelete('@x.id', true)"><i class="fas fa-trash-alt"></i> Obriši</a>
+                    </span>
+
+                    <a class="btn btn-primary" asp-action="Uredi" asp-route-id="@x.id"><i class="fas fa-edit"></i>  Uredi</a>
+
+                    <a class="btn btn-outline-primary" asp-action="DodijeliNagradu" asp-route-id="@x.id"><i class="fas fa-gifts"></i>  Dodijeli nagradu</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<head>
+  @*  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">*@
+    <script src="~/js/delete.js"></script>
+
+    <link rel="stylesheet" href="~/css/dataTable.css">
+    <script src="~/js/dataTable.js"></script>
+   
+
+</head>
+
+<br />
+<br />
+<a style="text-align:center;" class="btn btn-outline-info" href="/Home/Index"><i class="fas fa-home"></i>  Nazad</a>
+<a class="btn btn-outline-primary" asp-action="Dodaj"><i class="fas fa-plus-circle"></i>  Dodaj novu nagradu igru</a>
+<a class="btn btn-outline-info" asp-action="PrikaziKupceINagrade"><i class="fas fa-gift"></i> Prikaži dodijeljene nagrade</a>
+
+
+
+

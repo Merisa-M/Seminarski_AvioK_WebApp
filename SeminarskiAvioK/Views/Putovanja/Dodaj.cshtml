@@ -1,0 +1,36 @@
+﻿@model PutovanjaDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Dodaj putovanje</h2>
+<br />
+<br />
+<div style="width:70%; margin:auto;">
+
+    <form asp-action="Snimi" method="post">
+
+        <div class="form-group">
+            <label class="label">Naziv putovanja</label>
+            <input asp-for="Putovanja.Naziv" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Naziv je obavezno polje')"
+                   oninput="setCustomValidity('')" />
+            <div class="form-group">
+                <label>Grad </label>
+                <select asp-for="Putovanja.GradID" asp-items="Model.gradovi" class="form-control" style="width:25%"></select>
+                <span asp-validation-for="Putovanja.GradID" class="text-danger"></span>
+
+            </div>
+            <label class="label">Opis</label>
+            <input asp-for="Putovanja.Opis" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('opis je obavezno polje')"
+                   oninput="setCustomValidity('')" />
+            <label class="label">Ocjena</label>
+            <input asp-for="Putovanja.ProsjecnaOcjena" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('ocjena je obavezno polje')"
+                   oninput="setCustomValidity('')" />
+        </div>
+
+
+        <input type="submit" value="Snimi" class="btn btn-outline-danger float-right" id="snimi" />
+
+
+    </form>
+</div>

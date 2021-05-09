@@ -1,0 +1,51 @@
+﻿@model NagradnaIgraDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+
+<body>
+    <br />
+    <h2 style="text-align: center; font-style:italic;">Dodaj nagradnu igru</h2>
+    <br />
+    <div style="width:70%; margin:auto;">
+
+        <form asp-action="Snimi" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="NagradnaIgra.NagradnaIgraID" />
+
+            <div class="form-group">
+                <label class="label">Naziv </label>
+                <input asp-for="NagradnaIgra.Naziv" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Naziv je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+            </div>
+
+            <div class="form-group">
+                <label class="label">Opis </label>
+                <input asp-for="NagradnaIgra.Opis" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Opis je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="label">Kraj </label>
+                <input asp-for="NagradnaIgra.Kraj" type="date" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Ovo je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+            </div>
+
+
+            <input type="submit" value="Snimi" class="btn btn-outline-danger float-md-right" id="snimi" />
+        </form>
+    </div>
+</body>
+<script>
+$(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });</script>
+
+
+
+

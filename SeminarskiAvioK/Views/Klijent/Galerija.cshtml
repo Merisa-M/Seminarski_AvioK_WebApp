@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Galerija";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+
+}
+<br />
+<h2 style="text-align:center;letter-spacing:3px;font-size:40px;font-family:Verdana">GALERIJA</h2>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+
+        .preview {
+            width: 680px;
+            height: 390px;
+            margin: 0 auto;
+            border-radius: 10px;
+            -webkit-box-shadow: 0px 33px 60px -3px rgba(0,123,255,0.75);
+            -moz-box-shadow: 0px 33px 60px -3px rgba(0,123,255,0.75);
+            box-shadow: 0px 33px 60px -3px rgba(0,123,255,0.75);
+            display: block;
+        }
+
+        .thumb {
+            display: inline-block;
+            width: 205px;
+            margin-right: auto;
+        }
+
+        .normal {
+            border: 3px solid #000000;
+            margin-bottom: 15px;
+        }
+
+        .selected {
+            border: 3px solid #007bff;
+        }
+    </style>
+</head>
+
+<body style="background-color:whitesmoke;">
+    <div class="content">
+        <br />
+        <div>
+            <img id="0" class="preview normal" src="" alt="preview" /><br /><br />
+        </div>
+
+        <img id="1" class="thumb normal" src="https://static.toiimg.com/photo/76420840.cms" alt="image1" onmouseover="preview(this)" />
+        <img id="3" class="thumb normal" src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/heroImage1/PowerfulReasons_hero.jpg" onmouseover="preview(this)" />
+        <img id="3" class="thumb normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR69-uu47cdaKlSl3TJFuVZJAXQfrj6th0aTA&usqp=CAU" alt="image3" onmouseover="preview(this)" />
+        <img id="3" class="thumb normal" src="https://www.expat.com/upload/guide/1533903445-shutterstock-573530380-news_item_slider-t1533903445.jpg" alt="image3" onmouseover="preview(this)" />
+        <img id="3" class="thumb normal" src="https://viewfinder.expedia.com/wp-content/uploads/2019/10/travel-tips-london-big-ben-header-1140x630.jpg" alt="image3" onmouseover="preview(this)" />
+    </div>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script>
+$(window).on("load", function () {
+            $(".loader-wrapper").fadeOut(2000);
+        });</script>
+
+    <script>
+var lastImg = 1; //Set initial thumbnail and preview
+        document.getElementById(0).src = document.getElementById(lastImg).src;
+        document.getElementById(lastImg).className = "thumb selected";
+
+        function preview(img) {
+            document.getElementById(lastImg).className = "thumb normal";
+            img.className = "thumb selected";
+            document.getElementById(0).src = img.src;
+            lastImg = img.id
+        }</script>
+
+</body>
+</html>
+

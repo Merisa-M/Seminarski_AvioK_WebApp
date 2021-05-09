@@ -1,0 +1,74 @@
+﻿@model KartePrikaziVM
+
+@{
+    ViewData["Title"] = "KarteDetalji";
+    Layout = "~/Views/Shared/_LayoutKlijent.cshtml";
+}
+<br />
+<br />
+<br />
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+    <script>
+function generatePDF() {
+            var doc = new jsPDF('p', 'pt', 'a3');
+
+            var elementHTML = $('#content').html();
+
+            var specialElementHandlers = {
+                '#elementH': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            doc.fromHTML(elementHTML, 133, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('ulaznica.pdf');
+        }</script>
+</head>
+
+<body>
+
+
+    <div>
+        <table width="70%" style="text-align:center; border-radius:30px; margin:auto; background-color:lightyellow;color:darkgrey">
+            <thead>
+                <tr>
+                    <th style="padding:15px">Kupac </th>
+                    <th style="padding:15px">Let </th>
+                    <th style="padding:15px">Sjedište </th>
+                    <th style="padding:15px">Cijena (KM) </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody style="padding:10px">
+                @foreach (var x in Model.karte)
+                {
+                    <tr>
+                        <td style="padding:15px">@x.ImePrezime</td>
+                        <td style="padding:15px"> @x.let</td>
+                        <td style="padding:15px"> @x.sjedista</td>
+                        <td style="padding:15px"> @x.Cijena</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+    <br />
+    <br />
+
+    <div id="elementH"></div>
+    <br />
+    <p style="text-align:center">
+        <button onclick="generatePDF();" class="btn btn-warning btn-lg" style="background-color:black;color:white;"><i class="fas fa-file-pdf"></i>  Sačuvaj</button>
+        <a class="btn btn-danger btn-lg" asp-action="MojeKarte"><i class="fas fa-arrow-circle-left"></i> Nazad</a>
+    </p>
+
+</body>

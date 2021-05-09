@@ -1,0 +1,53 @@
+﻿@model NovostiDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+<br />
+<h2 style="text-align: center; font-style:italic;">Dodaj novost</h2>
+<br />
+<br />
+<body>
+    <div style="width:70%; margin:auto;">
+        <form asp-action="Snimi" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Novosti.NovostiID" />
+
+            <div class="form-group">
+                <label class="label">Naziv </label>
+                <input asp-for="Novosti.Naziv" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Naziv je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+
+            </div>
+
+            <div class="form-group">
+                <label class="label">Tekst </label>
+                <input asp-for="Novosti.Tekst" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Tekst je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+            </div>
+
+            <div class="form-group">
+                <label class="label">Kratki sadržaj </label>
+                <input asp-for="Novosti.KratkiSadrzaj" id="input" class="form-control" required="" oninvalid="this.setCustomValidity('Kratki sadržaj je obavezno polje')"
+                       oninput="setCustomValidity('')" />
+            </div>
+
+            <div class="form-group">
+                <label class="label">Datum/Vrijeme objave </label>
+                <input asp-for="Novosti.DatumVrijemeObjave" type="date" id="input" class="form-control" />
+            </div>
+
+            <div class="form-group " style="margin-left:5%">
+                <label asp-for="Slika"></label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input asp-for="Slika" class="form-control custom-file-input">
+                        <label class="custom-file-label">Choose File...</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <input type="submit" value="Snimi" class="btn btn-outline-danger" id="snimi" />
+        </form>
+    </div>
+</body>
+
