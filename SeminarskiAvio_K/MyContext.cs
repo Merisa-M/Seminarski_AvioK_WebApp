@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SeminarskiAvio_K
 {
-    public class MyContext : DbContext
+    public partial class MyContext : DbContext
     {
         public DbSet<Admin> Admin { get; set; }
         public DbSet<AutorizacijskiToken> AutorizacijskiToken { get; set; }
@@ -32,7 +32,16 @@ namespace SeminarskiAvio_K
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString: @"Server=.;Database=SeminarskiAvioK;Trusted_Connection=True;MultipleActiveResultSets=true;");
+            optionsBuilder.UseSqlServer(connectionString: @"Server=.;Database=SeminarskiAvioKtest;Trusted_Connection=True;MultipleActiveResultSets=true;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
     }
 }
